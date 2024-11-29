@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -19,6 +21,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Flux<Customer> getAllCustomers() {
         return customerRepository.findAll();
+    }
+    @Override
+    public Flux<Customer> getCustomersByIdIn(List<String> customerIds) {
+        return customerRepository.findByIdIn(customerIds);
     }
 
     @Override

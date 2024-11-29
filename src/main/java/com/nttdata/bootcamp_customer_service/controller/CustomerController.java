@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/customers")
 public class CustomerController {
@@ -30,6 +32,11 @@ public class CustomerController {
     @GetMapping("/{id}")
     public Mono<Customer> getCustomerById(@PathVariable String id) {
         return customerService.getCustomerById(id);
+    }
+
+    @GetMapping("/in")
+    public Flux<Customer> getCustomerByIdIn(@RequestBody List<String> id) {
+        return customerService.getCustomersByIdIn(id);
     }
 
     @PostMapping

@@ -1,1 +1,1 @@
-# bootcamp-customer-service
+# bootcamp-product-type-service

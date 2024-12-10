@@ -2,6 +2,7 @@ package com.nttdata.bootcamp_customer_service.controller;
 
 import com.nttdata.bootcamp_customer_service.model.collection.Customer;
 import com.nttdata.bootcamp_customer_service.service.CustomerService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,10 +21,6 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping("/health")
-    public ResponseEntity<String> healthCheck() {
-        return new ResponseEntity<>("Customer Service is up and running!", HttpStatus.OK);
-    }
     @GetMapping
     public Flux<Customer> getAllCustomers() {
         return customerService.getAllCustomers();
@@ -34,9 +31,11 @@ public class CustomerController {
         return customerService.getCustomerById(id);
     }
 
-    @GetMapping("/in")
+    @PostMapping("/in")
     public Flux<Customer> getCustomerByIdIn(@RequestBody List<String> id) {
-        return customerService.getCustomersByIdIn(id);
+        Flux<Customer> custormes = customerService.getCustomersByIdIn(id);
+        log.info("customers {}",custormes);
+        return custormes;
     }
 
     @PostMapping

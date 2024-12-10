@@ -12,6 +12,7 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 @RestController
+@Log4j2
 @RequestMapping("/api/customers")
 public class CustomerController {
 

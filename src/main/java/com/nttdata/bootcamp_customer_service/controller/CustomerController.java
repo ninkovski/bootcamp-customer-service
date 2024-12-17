@@ -41,6 +41,7 @@ public class CustomerController {
 
     @PostMapping
     public Mono<Customer> createCustomer(@RequestBody Customer customer) {
+        log.info("customer {}",customer);
         return customerService.createCustomer(customer);
     }
 
